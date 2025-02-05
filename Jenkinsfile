@@ -1,18 +1,36 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_USERNAME = credentials('DOCKER_USERNAME')
+        DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+    }
+
     stages {
-        stage('Build and Push Docker Image') {
+        stage('Checkout') {
             steps {
-                // Grant executable permissions to the build script
-                sh 'chmod +x deploy.sh'
-
-                // Build the Docker image using the build script
-                sh './deploy.sh'
-
-                
+                git 'https://github.com/GSreevadhani/GuviTask-DevOps.git'
             }
         }
 
+        stage('Build Docker Image') {
+            steps {
+                sh 'chmod +x build.sh'
+                sh './build.sh'
+            }
+        }
+
+        stage('Login to Docker Hub') {
+            steps {
+                sh 'echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin'
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                sh 'docker tag test sreevadhani/ar'
+                sh 'docker push sreevadhani/ar'
+            }
+        }
     }
 }
