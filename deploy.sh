@@ -12,7 +12,7 @@ fi
 
 # Tag and push the image
 # Tagging the built image with the correct name before pushing
-docker tag my-react-app sreevadhani/app
+docker tag react-app sreevadhani/app
 
 # Pushing the tagged image to Docker Hub
 docker push sreevadhani/app
