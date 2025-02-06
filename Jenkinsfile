@@ -28,8 +28,8 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                sh 'docker tag test sreevadhani/ar'
-                sh 'docker push sreevadhani/ar'
+                sh 'docker tag my-react-app sreevadhani/app'
+                sh 'docker push sreevadhani/app'
             }
         }
     }
