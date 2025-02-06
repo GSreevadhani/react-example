@@ -11,8 +11,12 @@ if [ $? -ne 0 ]; then
 fi
 
 # Tag and push the image
-docker tag test sreevadhani/ar
-docker push sreevadhani/ar
+# Tagging the built image with the correct name before pushing
+docker tag my-react-app sreevadhani/app
+
+# Pushing the tagged image to Docker Hub
+docker push sreevadhani/app
+
 if [ $? -ne 0 ]; then
     echo "❌ Docker push failed!"
     exit 1
