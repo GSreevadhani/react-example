@@ -28,7 +28,7 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                sh 'docker tag my-react-app sreevadhani/app'
+                sh 'docker tag react-app sreevadhani/app'
                 sh 'docker push sreevadhani/app'
             }
         }
