@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t my-react-app .
+docker build -t react-app .
